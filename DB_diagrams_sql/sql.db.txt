@@ -1,0 +1,86 @@
+
+
+-- EXAM TABLE
+
+CREATE TABLE exam.exam (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	examtitle varchar NULL,
+	examtype varchar NULL,
+	CONSTRAINT exam_pk PRIMARY KEY (id)
+);
+
+
+----------------------------------------------------------------
+-- STUDENT TABLE
+
+CREATE TABLE exam.student (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	"name" varchar NULL,
+	surname varchar NULL,
+	CONSTRAINT student_pk PRIMARY KEY (id)
+);
+
+
+-----------------------------------------------------------------
+-- QUESTION TABLE
+
+CREATE TABLE exam.question (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	question varchar NULL,
+	answer varchar NULL,
+	exam_id int4 NOT NULL,
+	CONSTRAINT correct_answer_pk PRIMARY KEY (id),
+	CONSTRAINT correct_answer_fk FOREIGN KEY (exam_id) REFERENCES exam.exam(id)
+);
+
+--------------------------------------------------------------------
+-- STUDENT_ANSWER TABLE
+
+CREATE TABLE exam.student_answer (
+	answer varchar NULL,
+	exam_id int4 NOT NULL,
+	student_id int4 NOT NULL,
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	question_id int4 NOT NULL,
+	CONSTRAINT student_answer_pk PRIMARY KEY (id),
+	CONSTRAINT student_answer_fk FOREIGN KEY (exam_id) REFERENCES exam.exam(id),
+	CONSTRAINT student_answer_fk_1 FOREIGN KEY (student_id) REFERENCES exam.student(id),
+	CONSTRAINT student_answer_fk_2 FOREIGN KEY (question_id) REFERENCES exam.question(id)
+);
+
+-------------------------------------------------------------------------------------------------
+-- STUDENT_RESULT TABLE
+
+CREATE TABLE exam.student_result (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	student_id int4 NOT NULL,
+	score int4 NOT NULL,
+	exam_id int4 NOT NULL,
+	CONSTRAINT student_result_pk PRIMARY KEY (id),
+	CONSTRAINT student_result_fk FOREIGN KEY (exam_id) REFERENCES exam.exam(id),
+	CONSTRAINT student_result_fk_1 FOREIGN KEY (student_id) REFERENCES exam.student(id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
