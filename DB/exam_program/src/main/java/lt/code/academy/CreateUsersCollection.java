@@ -29,7 +29,7 @@ public class CreateUsersCollection {
         collection.insertOne(lecturer2);
 
         System.out.println("Collection: " + collection.getNamespace().getCollectionName() + " susikūrė sėkmingai");
-        // Close the MongoDB client
+
         mongoClient.close();
     }
 }

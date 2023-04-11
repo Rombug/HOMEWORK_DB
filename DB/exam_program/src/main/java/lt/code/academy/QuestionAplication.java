@@ -6,15 +6,12 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import java.util.Scanner;
 public class QuestionAplication {
-    private static MongoClient mongoClient;
-    private static MongoDatabase database;
-    private static MongoCollection<Document> collection;
 
     public void question () {
 
-        mongoClient = new MongoClient("localhost", 27017);
-        database = mongoClient.getDatabase("exam_db");
-        collection = database.getCollection("questions");
+        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        MongoDatabase database = mongoClient.getDatabase("exam_db");
+        MongoCollection<Document> collection = database.getCollection("questions");
         MongoCollection<Document> users = database.getCollection("users");
 
         Scanner scanner = new Scanner(System.in);
